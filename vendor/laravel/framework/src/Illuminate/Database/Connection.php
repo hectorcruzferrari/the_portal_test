@@ -22,7 +22,7 @@ class Connection implements ConnectionInterface
 {
     use DetectsLostConnections;
 
-    /**
+    /***1
      * The active PDO connection.
      *
      * @var PDO
