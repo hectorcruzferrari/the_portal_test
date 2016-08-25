@@ -14,14 +14,14 @@ class Streamline extends Command
      */
     protected $signature = 'picking
                         {input : Full path of the file to import}
-                        {--output=: (optional) Full path of the output file}';
+                        {--output= : (optional) Full path of the output file}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Take a file and generate another one sorted by pick_location';
 
     /**
      * Create a new command instance.
@@ -48,6 +48,8 @@ class Streamline extends Command
             $this->error('Please indicate the file path of the input file');
         }
         else {
+            
+            // Cleaning arguments and validating if a output has been set.
             str_replace($filepathIn, "\\", "\\\\");
             if(isset($filepathOut) && $filepathOut!=null) {
                 str_replace($filepathOut, "\\", "\\\\");
@@ -56,7 +58,8 @@ class Streamline extends Command
             else {
                 $result = FilesController::picking($filepathIn);
             }
-            if($result == true)
+            
+            if($result === true)
             {
                 $this->info('File created.');
             }
