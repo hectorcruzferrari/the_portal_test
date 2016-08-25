@@ -19,12 +19,13 @@ Some practices to highlight are:
 ## Installation
 
 1. `git clone https://github.com/hectorcruzferrari/the_portal_test.git`
-2. `composer update`
-3. `composer dump-autoload`
-4. Create the database. It could be according to the config file (.env) named "the_portal_test"
-5. Modify the .env file according the database connection settings.
-6. `php artisan migrate:install`
-7. `php artisan migrate`
+2. `cd the_portal_test` or the project folder name.
+3. `composer update`
+4. `composer dump-autoload`
+5. Create the database. It could be according to the config file (.env) named "the_portal_test"
+6. Modify the .env file according the database connection settings.
+7. `php artisan migrate:install`
+8. `php artisan migrate`
 
 ## How to use it
 
