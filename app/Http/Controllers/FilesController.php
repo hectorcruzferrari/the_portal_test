@@ -11,6 +11,11 @@ use PortalTest\Http\Requests;
 
 class FilesController extends Controller
 {
+
+    /**
+     * @param null $filepath
+     * @return bool
+     */
     public static function import($filepath = null)
     {
         if ($filepath == null)
@@ -47,7 +52,10 @@ class FilesController extends Controller
             return false;
         }
     }
-    
+
+    /**
+     * @return mixed
+     */
     public static function sortTable()
     {
         /**
@@ -61,21 +69,30 @@ class FilesController extends Controller
             ->get();
     }
 
-    public static function export($filepath = null)
-    {
-
-    }
-
+    /**
+     * @param $filepathIn
+     * @param null $filepathOut
+     * @return bool|string
+     */
     public static function picking($filepathIn, $filepathOut=null)
     {
         try {
+
+            //If input == output, append "_out" to the name, to avoid replace the original file
             if($filepathOut==null || $filepathOut == $filepathIn)
                 $filepathOut = substr($filepathIn, 0, strrpos($filepathIn, '.')) . '_out.csv';
+
+            
+            //Import the input file
             self::import($filepathIn);
+
+
+            //Sorting talbe
             $sortedTable = self::sortTable();
 
-            $echo = "product_code,quantity,pick_location" . "\r\n";
 
+            //Generating the output file
+            $echo = "product_code,quantity,pick_location" . "\r\n";
             foreach($sortedTable as $key => $row)
             {
                 $echo .= $row->product_code.",". $row->quantity.",". $row->pick_location;
